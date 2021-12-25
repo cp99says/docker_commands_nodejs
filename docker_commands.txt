@@ -1,9 +1,15 @@
 build docker image
    docker build -t node-app-image .
 
-run a docker container with the source code synchronized to the
+run a docker container with the source code synchronized
    docker run -v ${pwd}:/app:ro -v /app/node_modules -p 3000:3000 -d --name node-app node-app-image
 
    ro=read-only
-   ${pwd}=current working directory
+   ${pwd}=current working directory for windows powershell
    3000:3000=outsidePort_internet:insidePort_container
+
+run a docker container with env variables
+   docker run -v ${pwd}:/app:ro -v /app/node_modules --env PORT=4000 -p 3000:4000 -d --name node-app node-app-image
+
+run a docker container with whole env file
+   docker run -v ${pwd}:/app:ro -v /app/node_modules --env-file ./.env -p 3000:4000 -d --name node-app node-app-image 
