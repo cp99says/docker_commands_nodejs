@@ -1,0 +1,9 @@
+build docker image
+   docker build -t node-app-image .
+
+run a docker container with the source code synchronized to the
+   docker run -v ${pwd}:/app:ro -v /app/node_modules -p 3000:3000 -d --name node-app node-app-image
+
+   ro=read-only
+   ${pwd}=current working directory
+   3000:3000=outsidePort_internet:insidePort_container
