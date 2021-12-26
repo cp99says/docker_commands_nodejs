@@ -13,3 +13,12 @@ run a docker container with env variables
 
 run a docker container with whole env file
    docker run -v ${pwd}:/app:ro -v /app/node_modules --env-file ./.env -p 3000:4000 -d --name node-app node-app-image 
+
+remove runing container woith its volume 
+   docker container rm -fv
+
+build an image and start the container automatically with docker-compose.yml file (changed code wont show up)
+  docker-compose up -d
+
+delete the container and delete all the volumes associated with it 
+  docker-compose down -v
