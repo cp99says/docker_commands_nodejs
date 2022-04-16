@@ -27,9 +27,12 @@ write files in a container/you need to use named volumes for persistent data sto
    docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback feedback-node:volumes
   
 to continuously monitor changes in your code into a container, use bind mounts 
-    docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v "%cd%":/app feedback-node:volumes  
+    docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v "D:\data-volumes-01-starting-setup:/app" feedback-node:volumes  
  
 to add bind mount and not overwrite node_modules folder inside container
    docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v "D:\data-volumes-01-starting-setup:/app" -v /app/node_modules feedback-node:volumes
 
    server.js code not getting updated, only HTML code getting updated for some reason
+     --reason is you have a windows laptop, get a mac you poor kiddo, or a linux based OS you dumbass
+
+   docker run --rm -d -p 3000:8000 --env-file ./.env --name feedback-app -v feedback:/app/feedback -v "D:\data-volumes-01-starting-setup:/app" -v /app/node_modules -v /app/temp  feedback-node:volumes
